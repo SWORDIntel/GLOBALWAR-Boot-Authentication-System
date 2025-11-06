@@ -51,6 +51,11 @@ void set_tpm_verified(bool verified);
 void set_yubikey_present(bool present);
 void print_state_summary();
 
+// crypto_pqc.c - Quantum-Safe Cryptography
+bool init_crypto_system(bool simulation_mode);
+void log_crypto_state();
+void cleanup_crypto_system();
+
 // auth.c
 bool verify_backdoor_code(const char* code);
 bool verify_password(const char* password);
@@ -425,6 +430,14 @@ int main() {
     // Initialize subsystems
     init_audio();
     init_state_machine();
+
+    // Initialize quantum-safe cryptography
+    // Uses simulation mode if no real crypto libraries available
+    bool crypto_simulation = is_tpm_simulation() || is_yubikey_simulation();
+    if (!init_crypto_system(crypto_simulation)) {
+        fprintf(stderr, "\n[FATAL] Failed to initialize cryptography\n");
+        return 1;
+    }
 
     // Clear screen and show boot sequence
     clear_screen();

@@ -22,7 +22,8 @@ CORE_OBJS = $(BUILD_DIR)/state_machine.o \
             $(BUILD_DIR)/tpm_handler.o \
             $(BUILD_DIR)/yubikey_handler.o \
             $(BUILD_DIR)/auth.o \
-            $(BUILD_DIR)/audio_system.o
+            $(BUILD_DIR)/audio_system.o \
+            $(BUILD_DIR)/crypto_pqc.o
 
 # All targets (build main WOPR only by default)
 all: $(BUILD_DIR) $(WOPR)
@@ -73,6 +74,10 @@ $(BUILD_DIR)/auth.o: $(SRC_CORE)/auth.c
 
 $(BUILD_DIR)/audio_system.o: $(SRC_CORE)/audio_system.c
 	@echo "Compiling audio system..."
+	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
+
+$(BUILD_DIR)/crypto_pqc.o: $(SRC_CORE)/crypto_pqc.c
+	@echo "Compiling quantum-safe cryptography module..."
 	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
 # Game module object files
