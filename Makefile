@@ -24,8 +24,8 @@ CORE_OBJS = $(BUILD_DIR)/state_machine.o \
             $(BUILD_DIR)/auth.o \
             $(BUILD_DIR)/audio_system.o
 
-# All targets
-all: $(BUILD_DIR) $(WOPR) $(CHESS) $(ESCAPE) $(GTW)
+# All targets (build main WOPR only by default)
+all: $(BUILD_DIR) $(WOPR)
 
 # Create build directory
 $(BUILD_DIR):

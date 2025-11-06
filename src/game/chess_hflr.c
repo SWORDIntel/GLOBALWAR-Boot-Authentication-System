@@ -6,8 +6,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include <time.h>
-#include "../core/audio_system.c"
+#include <unistd.h>
+#include "../core/audio_system.h"
 
 // Board representation
 char board[8][8];
@@ -423,8 +425,7 @@ void play_cheating_chess() {
     printf("=================================\n");
     
     joshua_speak("WOULD YOU LIKE TO PLAY AGAIN");
-    
+
     // Force restart
     play_cheating_chess();
 }
-EOFCHESS < /dev/null

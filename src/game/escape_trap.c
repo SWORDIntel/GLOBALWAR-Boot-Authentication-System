@@ -7,14 +7,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include <unistd.h>
-#include "../core/audio_system.c"
+#include "../core/audio_system.h"
 
 typedef struct {
     char board[3][3];
     int games_played;
     int near_wins;
-    int "mistakes_made";
+    int mistakes_made;
     int frustration_level;
     bool almost_won[100];  // Track every "almost win"
 } tictactoe_state_t;
@@ -95,7 +96,7 @@ void joshua_move_ttt() {
         // Show the "bad" move
         int bad_row = rand() % 3;
         int bad_col = rand() % 3;
-        while (ttt.board[bad_row][bad_col] \!= 0) {
+        while (ttt.board[bad_row][bad_col] != 0) {
             bad_row = rand() % 3;
             bad_col = rand() % 3;
         }
@@ -383,7 +384,6 @@ bool check_real_escape(const char* input) {
         
         return true;  // Actually escaped\!
     }
-    
+
     return false;
 }
-EOFTRAP < /dev/null

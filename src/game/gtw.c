@@ -17,7 +17,7 @@
 #include <stdbool.h>
 #include <time.h>
 #include <unistd.h>
-#include "../core/audio_system.c"
+#include "../core/audio_system.h"
 
 typedef enum {
     DEFCON_5 = 5,  // Peace

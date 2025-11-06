@@ -258,4 +258,3 @@ void init_audio() {
     // Play startup sound
     sound_boot_sequence();
 }
-EOFAUDIO < /dev/null
